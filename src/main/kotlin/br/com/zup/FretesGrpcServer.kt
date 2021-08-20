@@ -33,7 +33,7 @@ class FretesGrpcServer : FretesServiceGrpc.FretesServiceImplBase() {
                 .asRuntimeException())
 
         // SIMULANDO UMA VERIFICAÇÃO DE SEGURANÇA
-        if (cep.endsWith("999")) {
+        if (cep.endsWith("333")) {
             val statusProto = com.google.rpc.Status.newBuilder()
                 .setCode(Code.PERMISSION_DENIED_VALUE)
                 .setMessage("Usuario nao pode acessar esse recurso")
@@ -55,7 +55,7 @@ class FretesGrpcServer : FretesServiceGrpc.FretesServiceImplBase() {
         } catch (e: Exception) {
             responseObserver?.onError(Status.INTERNAL
                 .withDescription(e.message)
-                .withCause(e) // anexado ao Status, mas não é enviado ao Client
+                .withCause(e)
                 .asRuntimeException())
         }
 
